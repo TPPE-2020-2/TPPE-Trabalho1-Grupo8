@@ -1,0 +1,15 @@
+<ActivityDiagram name='nome do diagrama'>
+<ActivityDiagramElements name='nome do bloco de elementos'>
+<StartNode id=3 name='nome do bloco inicial'/>
+<ActivityNode id=4 name='nome da atividade'/>
+<DecisionNode id=5 name='nome do nó de decisão'/>
+<MergeNode id=6 name='nome do nó de fusão'/>
+<FinalNode id=7 name='nome do nó final'/>
+</ActivityDiagramElements>
+<ActivityDiagramTransitions name='nome do nó de transições'>
+<Transition id=9/>
+<Transition id=10/>
+<Transition id=11/>
+<Transition id=12/>
+</ActivityDiagramTransitions>
+</ActivityDiagram>
