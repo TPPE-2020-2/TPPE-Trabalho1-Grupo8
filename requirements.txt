@@ -1,0 +1,6 @@
+pytest
+ipytest
+parameterized
+unittest
+uuid
+nbformart
