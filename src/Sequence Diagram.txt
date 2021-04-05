@@ -1,0 +1,24 @@
+<SequenceDiagrams>
+<Lifelines >
+<Lifeline id=15 name='nome da lifeline' />
+<Lifeline id=15 name='nome da lifeline' />
+<Lifeline id=15 name='nome da lifeline' />
+</Lifelines>
+<Fragments>
+<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>
+<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>
+<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>
+</Fragments>
+<SequenceDiagram name='nome do diagrama'>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+<Fragment id=20 name='nome da mensagem' prob='valor da probabilidade'/>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+</SequenceDiagram>
+<SequenceDiagram name='nome do diagrama'>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+<Fragment id=20 name='nome da mensagem' prob='valor da probabilidade'/>
+<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>
+</SequenceDiagram>
+</SequenceDiagrams>
