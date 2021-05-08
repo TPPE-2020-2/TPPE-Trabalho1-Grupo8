@@ -12,12 +12,15 @@ class TypeTag:
         self.terminal = False
         self.id = str(sequence.next_id())
     def add_child(self, child):
-        from start_node.StartNode import StartNode
-        if(isinstance(child, StartNode)):
-            for self_child in self.children:
-                    if(isinstance(self_child, StartNode)):
-                        raise Exception("ActivityDiagramRuleException")
+        self.check_start_node(child)
         self.children.append(child)
+
+    def check_start_node(self, child):
+        from start_node.StartNode import StartNode
+        if (isinstance(child, StartNode)):
+            for self_child in self.children:
+                if (isinstance(self_child, StartNode)):
+                    raise Exception("ActivityDiagramRuleException")
 
     def set_attr(self, attr):
         self.attr = attr
