@@ -1,6 +1,9 @@
 import unittest
 from parameterized import parameterized
 import sys
+
+from type_tag.TypeTag import add_children
+
 sys.path.append("..")
 from activity_diagram.ActivityDiagram import ActivityDiagram
 from activity_diagram_elements.ActivityDiagramElements import ActivityDiagramElements
@@ -45,7 +48,7 @@ class TestSequence(unittest.TestCase):
     FN = FinalNode()
     FN.set_attr({'name': 'nome do nó final'})
     
-    ADE.add_children([SN, AN, DN, MN, FN])
+    add_children(ADE.children, [SN, AN, DN, MN, FN])
     
     # Transições
     ADT = ActivityDiagramTransitions()
@@ -55,7 +58,7 @@ class TestSequence(unittest.TestCase):
     T3 = Transition([DN], [MN])
     T4 = Transition([MN], [FN])
     
-    ADT.add_children([T1, T2, T3, T4])
+    add_children(ADT.children, [T1, T2, T3, T4])
     
     # Diagrama
     AD.add_child(ADE)
@@ -85,10 +88,10 @@ class TestSequence(unittest.TestCase):
     
     
     
-    LS.add_children([L, L, L])
-    FS.add_children([O, O, O])
-    SD.add_children([M, M, F, M])
-    SDS.add_children([LS, FS, SD, SD])
+    add_children(LS.children, [L, L, L])
+    add_children(FS.children, [O, O, O])
+    add_children(SD.children, [M, M, F, M])
+    add_children(SDS.children, [LS, FS, SD, SD])
     
     file_AD = open(AD.attr['name']+'.txt', "w")
     file_AD.write(AD.get_child_xml())
@@ -116,7 +119,7 @@ class TestSequence(unittest.TestCase):
         ["teste 8", ADE, [SN, SN], Exception]
     ])
     def test_AddChildren(self, name, element, children, expected):
-        self.assertRaises(expected, element.add_children, children)
+        self.assertRaises(expected, add_children, children)
     @parameterized.expand([
         ["teste 9", ADE, SN, Exception]
     ])
