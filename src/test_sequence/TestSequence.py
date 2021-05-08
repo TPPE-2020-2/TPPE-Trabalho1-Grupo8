@@ -23,7 +23,7 @@ from optional.Optional import Optional
 from sequence_diagram.SequenceDiagram import SequenceDiagram
 from sequence_diagrams.SequenceDiagrams import SequenceDiagrams
 from start_node.StartNode import StartNode
-from transition.Transition import Transition
+from transition.Transition import *
 class TestSequence(unittest.TestCase):
     node_utils = NodeUtils()
     # Diagrama de Atividades
@@ -56,10 +56,10 @@ class TestSequence(unittest.TestCase):
     # Transições
     ADT = ActivityDiagramTransitions()
     ADT.set_attr({'name': 'nome do nó de transições'})
-    T1 = Transition([SN], [AN])
-    T2 = Transition([AN], [DN])
-    T3 = Transition([DN], [MN])
-    T4 = Transition([MN], [FN])
+    T1 = TransitionFromStartNode([SN], [AN])
+    T2 = CommonTransition([AN], [DN])
+    T3 = TransitionFromDecisionNode([DN], [MN])#Transition([DN], [MN])
+    T4 = TransitionToFinalNode([MN], [FN])
     
     add_children(ADT.children, [T1, T2, T3, T4])
     
@@ -109,15 +109,18 @@ class TestSequence(unittest.TestCase):
         ["teste 3", AD, "<ActivityDiagram name='nome do diagrama'>\n<ActivityDiagramElements name='nome do bloco de elementos'>\n<StartNode id=3 name='nome do bloco inicial'/>\n<ActivityNode id=4 name='nome da atividade'/>\n<DecisionNode id=5 name='nome do nó de decisão'/>\n<MergeNode id=6 name='nome do nó de fusão'/>\n<FinalNode id=7 name='nome do nó final'/>\n</ActivityDiagramElements>\n<ActivityDiagramTransitions name='nome do nó de transições'>\n<Transition id=9/>\n<Transition id=10/>\n<Transition id=11/>\n<Transition id=12/>\n</ActivityDiagramTransitions>\n</ActivityDiagram>"]])
     def test_get_child_xml(self, name, node, expected):
         node_utils = NodeUtils()
+        print(node_utils.get_child_xml(node.terminal, node.id, node.attr, node.open_tag, node.children, node.close_tag))
+        print("---------------")
+        print(expected)
         self.assertEqual(node_utils.get_child_xml(node.terminal, node.id, node.attr, node.open_tag, node.children, node.close_tag), expected)
     @parameterized.expand([
-        ["teste 4", [DN, SN], [AN], Exception],
-        ["teste 5", [AN], [MN, MN], Exception],
-        ["teste 6", [SN], [AN, SN], Exception],
-        ["teste 7", [AN], [FN, FN], Exception],
+        ["teste 4", [DN, SN], [AN], Exception, TransitionFromDecisionNode],
+        ["teste 5", [AN], [MN, MN], Exception, TransitionToMergeNode],
+        ["teste 6", [SN], [AN, SN], Exception, TransitionFromStartNode],
+        ["teste 7", [AN], [FN, FN], Exception, TransitionToFinalNode],
     ])
-    def test_Transition(self, name, source, target, expected):
-        self.assertRaises(expected, Transition, source, target)
+    def test_Transition(self, name, source, target, expected, transition):
+        self.assertRaises(expected, transition, source, target)
         
     @parameterized.expand([
         ["teste 8", ADE, [SN, SN], Exception]
