@@ -4,6 +4,8 @@ import sys
 
 from type_tag.TypeTag import add_children
 
+from utils.node_utils import NodeUtils
+
 sys.path.append("..")
 from activity_diagram.ActivityDiagram import ActivityDiagram
 from activity_diagram_elements.ActivityDiagramElements import ActivityDiagramElements
@@ -23,6 +25,7 @@ from sequence_diagrams.SequenceDiagrams import SequenceDiagrams
 from start_node.StartNode import StartNode
 from transition.Transition import Transition
 class TestSequence(unittest.TestCase):
+    node_utils = NodeUtils()
     # Diagrama de Atividades
     
     AD = ActivityDiagram()
@@ -94,10 +97,10 @@ class TestSequence(unittest.TestCase):
     add_children(SDS.children, [LS, FS, SD, SD])
     
     file_AD = open(AD.attr['name']+'.txt', "w")
-    file_AD.write(AD.get_child_xml())
+    file_AD.write(node_utils.get_child_xml(AD.terminal, AD.id, AD.attr, AD.open_tag, AD.children, AD.close_tag))
     file_AD.close()
     file_SDS = open('Sequence Diagram.txt', "w")
-    file_SDS.write(SDS.get_child_xml())
+    file_SDS.write(node_utils.get_child_xml(SDS.terminal, SDS.id, SDS.attr, SDS.open_tag, SDS.children, SDS.close_tag))
     file_SDS.close()
     
     @parameterized.expand([
@@ -105,7 +108,8 @@ class TestSequence(unittest.TestCase):
         ["teste 2", ADE, "<ActivityDiagramElements name='nome do bloco de elementos'>\n<StartNode id=3 name='nome do bloco inicial'/>\n<ActivityNode id=4 name='nome da atividade'/>\n<DecisionNode id=5 name='nome do nó de decisão'/>\n<MergeNode id=6 name='nome do nó de fusão'/>\n<FinalNode id=7 name='nome do nó final'/>\n</ActivityDiagramElements>"],
         ["teste 3", AD, "<ActivityDiagram name='nome do diagrama'>\n<ActivityDiagramElements name='nome do bloco de elementos'>\n<StartNode id=3 name='nome do bloco inicial'/>\n<ActivityNode id=4 name='nome da atividade'/>\n<DecisionNode id=5 name='nome do nó de decisão'/>\n<MergeNode id=6 name='nome do nó de fusão'/>\n<FinalNode id=7 name='nome do nó final'/>\n</ActivityDiagramElements>\n<ActivityDiagramTransitions name='nome do nó de transições'>\n<Transition id=9/>\n<Transition id=10/>\n<Transition id=11/>\n<Transition id=12/>\n</ActivityDiagramTransitions>\n</ActivityDiagram>"]])
     def test_get_child_xml(self, name, node, expected):
-        self.assertEqual(node.get_child_xml(), expected)
+        node_utils = NodeUtils()
+        self.assertEqual(node_utils.get_child_xml(node.terminal, node.id, node.attr, node.open_tag, node.children, node.close_tag), expected)
     @parameterized.expand([
         ["teste 4", [DN, SN], [AN], Exception],
         ["teste 5", [AN], [MN, MN], Exception],
@@ -133,4 +137,5 @@ class TestSequence(unittest.TestCase):
         ["teste 13", SDS, "<SequenceDiagrams>\n<Lifelines >\n<Lifeline id=15 name='nome da lifeline' />\n<Lifeline id=15 name='nome da lifeline' />\n<Lifeline id=15 name='nome da lifeline' />\n</Lifelines>\n<Fragments>\n<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>\n<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>\n<Optional id=17 name='nome do fragmento' representedBy='nome do diagrama de sequencia'/>\n</Fragments>\n<SequenceDiagram name='nome do diagrama'>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n<Fragment id=20 name='nome da mensagem' prob='valor da probabilidade'/>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n</SequenceDiagram>\n<SequenceDiagram name='nome do diagrama'>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n<Fragment id=20 name='nome da mensagem' prob='valor da probabilidade'/>\n<Message id=19 name='nome da mensagem' prob='valor da probabilidade' source='nome da lifeline' target='nome da lifeline'/>\n</SequenceDiagram>\n</SequenceDiagrams>"]
     ])
     def test_get_child_xml1(self, name, node, expected):
-        self.assertEqual(node.get_child_xml(), expected)
+        node_utils = NodeUtils()
+        self.assertEqual(node_utils.get_child_xml(node.terminal, node.id, node.attr, node.open_tag, node.children, node.close_tag), expected)

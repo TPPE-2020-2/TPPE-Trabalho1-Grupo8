@@ -24,20 +24,6 @@ class TypeTag:
 
     def set_attr(self, attr):
         self.attr = attr
-    def get_child_xml(self):
-        attributes = []
-        if (self.terminal):
-            attributes = ['id='+self.id]
-        for attr in self.attr:
-            attributes.append(attr+"='"+self.attr[attr]+"'")
-        if(self.terminal):
-            return self.open_tag.replace('%s', ' '.join(attributes))
-        else:
-            xml = [self.open_tag.replace('%s', ' '.join(attributes))]
-            for child in self.children:
-                xml.append(child.get_child_xml())
-            xml.append(self.close_tag)
-            return '\n'.join(xml)
 
 
 def add_children(current_children, children):
