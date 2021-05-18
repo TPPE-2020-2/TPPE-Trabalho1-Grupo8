@@ -1,0 +1,19 @@
+Observações:
+------------
+Trabalho muito bem feito, parabens a todos! A única ressalva é de não terem sido
+criadas classes (e objetos) para cada tipo de exceção apresentada no enunciado. 
+
+
+Critérios de avaliação:
+-----------------------
+
+O programa funciona como deveria (30 %)?  30 pontos.
+
+Testes parametrizados foram implementados (20%) ? 20 pontos. 
+
+Classes de exceções foram implementadas? Excecoes foram lançadas e tratadas?
+Testes de excecoes foram implementados? (- 10% para cada exceção não
+implementada adequadamente, limitado a 50% da nota): 30 pontos.  
+
+
+NOTA FINAL: 80 pontos.
