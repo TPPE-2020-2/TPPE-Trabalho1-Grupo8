@@ -1,0 +1,26 @@
+Observações:
+------------
+
+Refatoração `Substituir condicional por polimorfismo` implementada
+corretamente. 
+
+A refatoração `Substituir método por objeto-método` transforma as variáveis do
+método extraído em atributos do método-objeto. Isso não foi feito. De resto, a
+operação está bem executada. 
+
+Refatoração `Extrair método` aplicada em instruções de um método para criação
+de novo método. Correto! 
+
+Critérios de avaliação:
+-----------------------
+
+Ref. 1 - mover método ou mover atributo (20 pontos):OK - 20 pontos.
+
+Ref. 2 - extrair método (20 pontos): OK - 20 pontos.
+
+Ref. 3 - substituir método por objeto-método (30 pontos): +/-, 20 pontos. 
+
+Ref. 4 - substituir condicional por polimorfismo (30 pontos): OK - 30 pontos
+
+
+NOTA FINAL: 90 pontos.
